@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>R0nge'sBlog - R0nge'sBlog</title><meta name="author" content="R0nge"><meta name="copyright" content="R0nge"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="R0nge在这里胡说八道">
+<meta property="og:type" content="website">
+<meta property="og:title" content="R0nge&#39;sBlog">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="R0nge&#39;sBlog">
+<meta property="og:description" content="R0nge在这里胡说八道">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/light.png">
+<meta property="article:author" content="R0nge">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/light.png"><link rel="shortcut icon" href="/img/light.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'R0nge\'sBlog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-08-03 23:36:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/light.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="R0nge'sBlog"><span class="site-name">R0nge'sBlog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">R0nge'sBlog</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/r0nge" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/13/%5B%E8%BD%AC%E8%BD%BD%5D%E3%80%8A%E6%A0%BC%E5%88%97%E4%BD%9B%E6%B8%B8%E8%AE%B0%E3%80%8B%E8%A6%81%E7%82%B9%E6%A2%B3%E7%90%86/" title="转载《格列佛游记》要点梳理">转载《格列佛游记》要点梳理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-13T04:58:25.000Z" title="Created 2023-07-13 12:58:25">2023-07-13</time></span></div><div class="content">声明文章转载于 知乎原文 侵删
+正文英国作家乔纳森·斯威夫特创作的一部杰出的游记体讽刺小说 。全书共四个部分，描写了外科医生格列佛航海漂流到小人国、大人国、飞岛国、慧骃国的种种经历。小说通过虚构的情节，夸张的手法，对当时的英国社会政治、法律、议会、竞争、军事、教育、社会风尚乃至整个人类的种种劣根性都进行了无情的讽刺和抨击，歌颂了劳动人民的反抗精神和正义斗争。
+第一卷 利立浦特（小人国）外科医生格列佛随航程途遇险,死里逃生,漂到利立浦特(小人国),被小人捆住献给国王。
+格列佛温顺的表现逐渐赢得了国王和人民对他的好感,他也渐渐熟悉了小人国的风俗习惯。在格列佛帮助下打败了同样是小人国的“不来夫斯古“，但是格列佛不愿灭掉不来夫斯古帝国,使皇帝很不高兴。这时,皇后寝宫失火,格列佛情急生智,撒了一泡尿把火扑灭,谁知却让皇后大为恼火。海军大臣嫉妒他的功劳；财政大臣又怀疑他的妻子和格列佛私通；他们密谋给格列佛定叛国罪，并把他的双眼剌瞎，将他活活饿死。格列佛被迫逃到不来夫斯古国，该国为他准备了相应的物资，他搭乘英国商船平安回国。
+第二卷：布罗卜丁奈格（大人国）游记。格列佛在利立浦特人的心目中是个庞然大物 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/06/28/%E5%88%86%E4%BA%ABHuaweiWatch2%E5%88%B7%E6%9C%BA%E5%8C%85/" title="分享HuaweiWatch2刷机包">分享HuaweiWatch2刷机包</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-06-28T14:25:11.000Z" title="Created 2023-06-28 22:25:11">2023-06-28</time></span></div><div class="content">链接：https://pan.baidu.com/s/1H9o3SBo1UdsHSrXBE_TyGg 提取码: XMRX刷机包通用 但是platform tools是linux的，因为比较难找所以直接给了，windows自己找一下，可能还需要驱动啥的#
+刷机指令
+fastboot oem unlock（此时会有yes/no两种选项，按一下电源键使yes变红，然后长按电源键）
+fastboot flash bootloader bootloder.img
+fastboot flash boot boot.img
+fastboot flash cache cache.img
+fastboot flash recovery recovery.img
+fastboot flash system system.img
+fastboot flash userdata userdats.img
+fastboot oem lock(不回锁每次开机都有安全提示）
+fastboot reboot(重启，然后用手机配对即可)
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/01/valine%E8%AF%84%E8%AE%BA%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/" title="解决hexo-butterfly valine评论异常问题">解决hexo-butterfly valine评论异常问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-12-31T16:01:01.000Z" title="Created 2023-01-01 00:01:01">2023-01-01</time></span></div><div class="content">注：想直接看解决方法直接看最后
+事情的起因前几天不是折腾了一个butterfly主题么（不出意外你现在看到的就是了），然后一直在研究主题美化，由于之前使用fluid主题已经正常配置了评论系统，所以我就直接照搬了appkey和appid，也没有测试，直到前两天朋友说评论用不了，我才发现问题……
+出现的问题先看下我当时的配置
+12345678valine:appId: 【没问题】appKey: 【没问题】avatar: &#x27;&#x27; # gravatar style https://valine.js.org/#/avatarserverURLs: https://cn.gravatar.combg: # valine backgroundvisitor: falseoption:
+
+我依稀记得当时只对appid和appkey做了修改，不应该有问题啊？？可是我本地&#x2F;服务器测试评论点己发送时一直转圈，无法发送至leancloud服务器，这是怎么一回事……
+于是我在localhost里运行了服务器，打开Google浏览器f12开发者预览，查看当我点击发送时的network ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/30/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%87%AF%E6%92%92%E5%8A%A0%E5%AF%86%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BC%80%E5%8F%91/" title="记一次凯撒加密程序的开发">记一次凯撒加密程序的开发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-12-30T06:22:38.000Z" title="Created 2022-12-30 14:22:38">2022-12-30</time></span></div><div class="content">前情提要之前了解了一些python ascii码的知识，又联想到了加密，于是就出现了这个小程序“OhMyPSW“这是一款基于python制作的 以凯撒加密为核心算法 的密码记事本,这是我第一个初具规模的项目，而且是完全开源的接下来，我将会向大家详细介绍我的程序（ps:我还使用相同的技术做了一个加密聊天的程序，目前还处于测试阶段，日后将会出现！）
+———基本技术详解———什么是凯撒加密
+凱撒密碼（英語：Caesar cipher），或稱凱撒加密、凱撒變換、變換加密，是一種最簡單且最廣為人知的加密技術。凱撒密碼是一種替換加密技術，明文中的所有字母都在字母表上向後（或向前）按照一個固定數目進行偏移後被替換成密文。例如，當偏移量是3的時候，所有的字母A將被替換成D，B變成E，以此類推。
+
+凯撒加密，说白了就是把字母按照一定的顺序替换，最初我设想的方案是制作一个字母表格，每个字母编上序号，通过对序号的加减实现替换，并且当时实现了一定的预想效果
+但是随后我在对中文的适配时遇到了问题，中文的汉字太多了！，一个个进行编码根本不现实，而且不能使用特殊字符（虽然应该不会有什么人用中文设置密码吧），但是为了 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/24/%E6%B0%B4%E6%B5%92%E4%BC%A0%E7%AB%A0%E8%8A%82%E5%A4%A7%E6%84%8F/" title="水浒传章节大意">水浒传章节大意</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-11-24T05:49:58.000Z" title="Created 2022-11-24 13:49:58">2022-11-24</time></span></div><div class="content">前情提要这篇文章发布一下我搜集的水浒传章节大意是在其他网站搜集的，如有侵权还请与我联系
+
+
+水浒传章节梗概
+　　第一回
+　　张天师祈禳瘟疫，洪太尉误走妖魔
+　　仁宗嘉右三年，瘟疫盛行，洪太尉奉皇帝命前往江西信州龙虎山，宣请嗣汉天师张真人来朝禳疫。
+　　洪太尉上山求见天师不成。回至方丈，不顾众道士劝阻，打开“伏魔之殿”，放出妖魔，遂致大祸。他吩咐从人，隐瞒走妖魔一节，假报天师除尽瘟疫，得到仁宗赏赐。
+　　第二回
+　　王教头私走延安府，九纹龙大闹史家村
+　　高俅与端王（后来的徽宗）结识。被提拔为殿帅府太尉，对曾打翻他的王升的儿子八十万禁军教头王进施行报复。
+　　王进出走延安府，在史家村给史进教枪棒。
+　　史进因擒少华山陈达而和朱武、杨春相识往来。华阴县中秋夜来史家村捉拿赏月喝酒吃肉的史进并少华山三好汉。
+　　第三回
+　　史太郎夜走华阴县，鲁提辖拳打镇关西
+　　三头领杀退县衙之兵，去延安寻找师傅王进，与鲁提辖在渭州潘家酒店相遇。鲁达救助金翠莲父女，打死郑屠。
+　　第四回
+　　赵员外重参文殊院，鲁智深大闹五台山
+　　鲁达出逃代州雁门县，金老女婿赵员外送他去五台山，做僧避祸。
+　　鲁达晚不坐禅， ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/light.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">R0nge</div><div class="author-info__description">R0nge在这里胡说八道</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/r0nge" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/13/%5B%E8%BD%AC%E8%BD%BD%5D%E3%80%8A%E6%A0%BC%E5%88%97%E4%BD%9B%E6%B8%B8%E8%AE%B0%E3%80%8B%E8%A6%81%E7%82%B9%E6%A2%B3%E7%90%86/" title="转载《格列佛游记》要点梳理">转载《格列佛游记》要点梳理</a><time datetime="2023-07-13T04:58:25.000Z" title="Created 2023-07-13 12:58:25">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/28/%E5%88%86%E4%BA%ABHuaweiWatch2%E5%88%B7%E6%9C%BA%E5%8C%85/" title="分享HuaweiWatch2刷机包">分享HuaweiWatch2刷机包</a><time datetime="2023-06-28T14:25:11.000Z" title="Created 2023-06-28 22:25:11">2023-06-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/01/valine%E8%AF%84%E8%AE%BA%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/" title="解决hexo-butterfly valine评论异常问题">解决hexo-butterfly valine评论异常问题</a><time datetime="2022-12-31T16:01:01.000Z" title="Created 2023-01-01 00:01:01">2023-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/30/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%87%AF%E6%92%92%E5%8A%A0%E5%AF%86%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BC%80%E5%8F%91/" title="记一次凯撒加密程序的开发">记一次凯撒加密程序的开发</a><time datetime="2022-12-30T06:22:38.000Z" title="Created 2022-12-30 14:22:38">2022-12-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/24/%E6%B0%B4%E6%B5%92%E4%BC%A0%E7%AB%A0%E8%8A%82%E5%A4%A7%E6%84%8F/" title="水浒传章节大意">水浒传章节大意</a><time datetime="2022-11-24T05:49:58.000Z" title="Created 2022-11-24 13:49:58">2022-11-24</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/" style="font-size: 1.1em; color: #999">开发日记</a> <a href="/tags/%E8%B5%84%E6%96%99%E5%88%86%E4%BA%AB-%E8%AF%AD%E6%96%87/" style="font-size: 1.5em; color: #99a9bf">资料分享_语文</a> <a href="/tags/Debug/" style="font-size: 1.1em; color: #999">Debug!</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">5</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-08-03T15:36:17.092Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By R0nge</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
