@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/light.png">
+  <link rel="icon" href="/img/light.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="r0nge">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="**这篇文章是两年之前写的，现在看来当时还是太年轻了……很多语法和变量名称都极其的不标准，流程也有些混乱，不过好歹也算个小小开发，图一乐吧！ 郑重提示如果想要确定您密码的安全，您需要保证以下几点：1.不要泄漏psw_data.txt 文件内存储了加密后的密码，虽然他们理论上是安全的，但不要太自信2.请保证您运行的是，且仅是我自己编写的版本，未经确认的修改版很可能带来风险3.最大的漏洞是（而且一直是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次凯撒加密程序的开发">
+<meta property="og:url" content="https://blog.r0ngeblog.top/2022/12/30/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%87%AF%E6%92%92%E5%8A%A0%E5%AF%86%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="R0nge&#39;sBlog">
+<meta property="og:description" content="**这篇文章是两年之前写的，现在看来当时还是太年轻了……很多语法和变量名称都极其的不标准，流程也有些混乱，不过好歹也算个小小开发，图一乐吧！ 郑重提示如果想要确定您密码的安全，您需要保证以下几点：1.不要泄漏psw_data.txt 文件内存储了加密后的密码，虽然他们理论上是安全的，但不要太自信2.请保证您运行的是，且仅是我自己编写的版本，未经确认的修改版很可能带来风险3.最大的漏洞是（而且一直是">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/MRX-J0BS/pic/master/Caesar3.svg">
+<meta property="article:published_time" content="2022-12-30T22:22:38.000Z">
+<meta property="article:modified_time" content="2023-10-15T02:03:57.290Z">
+<meta property="article:author" content="r0nge">
+<meta property="article:tag" content="开发日记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/MRX-J0BS/pic/master/Caesar3.svg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>记一次凯撒加密程序的开发 - R0nge&#39;sBlog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.r0ngeblog.top","root":"/","version":"1.9.7","typing":"热烈庆祝开博一周年🎉","anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>R0nge&#39;Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/img.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">记一次凯撒加密程序的开发</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        r0nge
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-30 14:22" pubdate>
+          December 30, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">记一次凯撒加密程序的开发</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    Last updated on 2023-10-14T19:03:57-07:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>**这篇文章是两年之前写的，现在看来当时还是太年轻了……很多语法和变量名称都极其的不标准，流程也有些混乱，不过好歹也算个小小开发，图一乐吧！</p>
+<h1 id="郑重提示"><a href="#郑重提示" class="headerlink" title="郑重提示"></a>郑重提示</h1><p>如果想要确定您密码的安全，您需要保证以下几点：<br>1.不要泄漏psw_data.txt 文件内存储了加密后的密码，虽然他们理论上是安全的，但不要太自信<br>2.请保证您运行的是，且仅是我自己编写的版本，未经确认的修改版很可能带来风险<br>3.最大的漏洞是（而且一直是）用户;没有绝对安全的系统，所以请为策略失效做好应急的准备<br>4.本文的密码是离线存储的，所以您只需要确定硬件安全即可（主机不要出现恶意软件或被窃取）</p>
+<h1 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h1><p>之前了解了一些python ascii码的知识，又联想到了加密，于是就出现了这个小程序<br>“OhMyPSW“<br>这是一款基于python制作的 以凯撒加密为核心算法 的密码记事本,这是我第一个初具规模的项目，而且是完全开源的<br>接下来，我将会向大家详细介绍我的程序<br>（ps:我还使用相同的技术做了一个加密聊天的程序，目前还处于测试阶段，日后将会出现！）</p>
+<h1 id="———基本技术详解———"><a href="#———基本技术详解———" class="headerlink" title="———基本技术详解———"></a>———基本技术详解———</h1><p><strong>什么是凯撒加密</strong><br>凱撒密碼（英語：Caesar cipher），或稱凱撒加密、凱撒變換、變換加密，是一種最簡單且最廣為人知的加密技術。凱撒密碼是一種替換加密技術，明文中的所有字母都在字母表上向後（或向前）按照一個固定數目進行偏移後被替換成密文。例如，當偏移量是3的時候，所有的字母A將被替換成D，B變成E，以此類推。<br><img src="https://raw.githubusercontent.com/MRX-J0BS/pic/master/Caesar3.svg" srcset="/img/loading.gif" lazyload alt="简易说明图"><br>凯撒加密，说白了就是把字母按照一定的顺序替换，最初我设想的方案是制作一个字母表格，每个字母编上序号，通过对序号的加减实现替换，并且当时实现了一定的预想效果</p>
+<p>但是随后我在对中文的适配时遇到了问题，<strong>中文的汉字太多了！</strong>，一个个进行编码根本不现实，而且不能使用特殊字符（虽然应该不会有什么人用中文设置密码吧），但是为了以后做其他的项目 也能更好的适配，所以我选择攻破这个难关： 用ASCII实现</p>
+<p>其实无论对语言怎样处理，本质上都是数字化，所以我灵机一动（实际上是在大佬的帮助下）想到用ASCII码来代替，所有的字符，只要能在计算机上显示，就必定会有一个属于自己的ASCII码，而且这个数值是可以进行加减计算来实现换位的！！！(事实上，ascii码本身不也还是一种表格么)</p>
+<h1 id="———基本功能实现———"><a href="#———基本功能实现———" class="headerlink" title="———基本功能实现———"></a>———基本功能实现———</h1><p>python中的命令</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">ord</span><span class="hljs-params">(明文)</span></span> #将明文变为ascii码<br><span class="hljs-function"><span class="hljs-title">chr</span><span class="hljs-params">(ascii码)</span></span>#将ascii变为明文<br></code></pre></td></tr></table></figure>
+<pre><code class="hljs">有了这基本的指令，就可以 广阔天地，大有作为了！
+</code></pre>
+<h1 id="————各版本介绍————"><a href="#————各版本介绍————" class="headerlink" title="————各版本介绍————"></a>————各版本介绍————</h1><h2 id="0-5版本（极其精简）"><a href="#0-5版本（极其精简）" class="headerlink" title="0.5版本（极其精简）"></a>0.5版本（极其精简）</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#将明文生成密文</span><br><span class="hljs-attribute">safe_data_1</span>=<span class="hljs-string">&#x27;&#x27;</span> #明文<br><span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> data:<br>    <span class="hljs-attribute">a</span>=ord(s)#将明文中每个字符导入到算法中进行转ascii<br>    <span class="hljs-attribute">b</span>=a+key#将明文中每个字符的ascii  加上key变为明文<br>    <span class="hljs-attribute">safe_data_1</span>=safe_data_1+chr(b)#替换原字符串-加密完成！<br><br><span class="hljs-comment"># 解密为原文（tire1-data）</span><br><span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> safe_data_1:<br>    <span class="hljs-attribute">n</span>=ord(y)-key<br>    <span class="hljs-attribute">n</span>=chr(n)<br>    <span class="hljs-attribute">data</span>=data+n<br></code></pre></td></tr></table></figure>
+<p>没错，刚刚你看到的这几行代码，就是我们OhMyPSW的最底层算法，很简单对吧！ 我的0.5版本就是以此为基础制作的（当时只能实现最基础的加密解密功能，不能进行存储）</p>
+<h2 id="1-0版本（不公开发出）"><a href="#1-0版本（不公开发出）" class="headerlink" title="1.0版本（不公开发出）"></a>1.0版本（不公开发出）</h2><p>为了解决不能存储的问题，在1.0版本中我们将会更新用于将密码本存储和读写的代码，这相对来说很基础，也有不少比我更厉害的大佬教过，我就直接放代码好了</p>
+<p>以下是重点更新内容</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-meta">#存储</span><br><span class="hljs-class"><span class="hljs-keyword">data</span> = open(&#x27;此处放文件路径 绝对相对均可&#x27;,&#x27;<span class="hljs-title">a&#x27;</span>)  #这里的a代表权限为 只写 </span><br><span class="hljs-class"><span class="hljs-keyword">data</span>.write(<span class="hljs-title">str</span>(<span class="hljs-title">netname2</span>))</span><br><span class="hljs-class"><span class="hljs-keyword">data</span>.write(<span class="hljs-title">str</span>(<span class="hljs-title">username2</span>))</span><br><span class="hljs-class"><span class="hljs-keyword">data</span>.write(<span class="hljs-title">str</span>(<span class="hljs-title">password2</span>))   #存储的这三个变量其实就是加密后的描述，用户名，密码</span><br><span class="hljs-class"><span class="hljs-keyword">data</span>.write(&#x27;\<span class="hljs-title">n&#x27;</span>)   #此处是为了换行，其实应该有更好的方法，这里就是单纯为了简单</span><br><span class="hljs-meta">#读取</span><br><span class="hljs-class"><span class="hljs-keyword">data</span> = open(&#x27;此处放文件路径 绝对相对均可,&#x27;<span class="hljs-title">r&#x27;</span>)   #r代表权限为 只读</span><br><span class="hljs-title">file</span>=str(<span class="hljs-class"><span class="hljs-keyword">data</span>.read()) #逐行读取</span><br></code></pre></td></tr></table></figure>
+<h2 id="2-0版本（第一个公开发出的版本，感谢支持）"><a href="#2-0版本（第一个公开发出的版本，感谢支持）" class="headerlink" title="2.0版本（第一个公开发出的版本，感谢支持）"></a>2.0版本（第一个公开发出的版本，感谢支持）</h2><p>在这个版本中进一步增强了安全性，考虑到暴力破解的可能，我又对凯撒加密的密码进行了倒序排列，简单表示如下：</p>
+<p>abc - def -fed</p>
+<p>这样可以有效地防止暴力破解</p>
+<p>这个版本原始文件找不到了，放在2.5版本一起发出吧，反正2.5版本改动不大</p>
+<h2 id="2-5版本"><a href="#2-5版本" class="headerlink" title="2.5版本"></a>2.5版本</h2><p>增加自动生成高强度密码</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><code class="hljs routeros">    import random<br>    import time<br>    <br>    def code_append(key):<br>        <span class="hljs-attribute">a</span>=1<br>    <br>        <span class="hljs-keyword">while</span> a &gt;0:<br>            <span class="hljs-attribute">netname1</span>=str(input(&#x27;请输入域名/软件描述:&#x27;))<br>            <span class="hljs-attribute">username1</span>=str(input(&#x27;请输入账号名:&#x27;))<br>            <span class="hljs-attribute">password1</span>=input(&#x27;请输入密码:&#x27;)<br>            <span class="hljs-attribute">a</span>=a-1<br>        <br>        #对密码进行加密<br>        <span class="hljs-attribute">password2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>        <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (password1+<span class="hljs-string">&#x27;\n&#x27;</span>):<br>            <span class="hljs-attribute">a</span>=ord(s)<br>            <span class="hljs-attribute">b</span>=a+key<br>            <span class="hljs-attribute">password2</span>=password2+chr(b)<br><br><br>        #对描述进行加密<br>        <span class="hljs-attribute">netname2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>        <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (netname1+<span class="hljs-string">&#x27;_&#x27;</span>):<br>            <span class="hljs-attribute">a</span>=ord(s)<br>            <span class="hljs-attribute">b</span>=a+key<br>            <span class="hljs-attribute">netname2</span>=netname2+chr(b)<br><br><br>        #对用户名进行加密<br>        <span class="hljs-attribute">username2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>        <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (username1+<span class="hljs-string">&#x27;_&#x27;</span>):<br>            <span class="hljs-attribute">a</span>=ord(s)<br>            <span class="hljs-attribute">b</span>=a+key<br>            <span class="hljs-attribute">username2</span>=username2+chr(b)<br><br><br><br>        #存储到文件里<br>        data = open(<span class="hljs-string">&#x27;Net_Code/data.txt&#x27;</span>,<span class="hljs-string">&#x27;a&#x27;</span>)<br>        data.write(str(netname2))<br>        data.write(str(username2))<br>        data.write(str(password2))<br>        data.write(<span class="hljs-string">&#x27;\n&#x27;</span>) #此处是为了换行，其实应该有更好的方法，这里就是单纯为了简单<br><br><br><br><br>    def code_look(key):<br>        data = open(<span class="hljs-string">&#x27;Net_Code/data.txt&#x27;</span>,<span class="hljs-string">&#x27;r&#x27;</span>)<br>        <span class="hljs-attribute">file</span>=str(data.read())<br>        <span class="hljs-attribute">file2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>    <br>        <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> file:<br>            <span class="hljs-attribute">n</span>=ord(y)-key<br>            <span class="hljs-attribute">n</span>=chr(n)<br>            <span class="hljs-attribute">file2</span>=file2+n<br>        <br>        file2.replace(<span class="hljs-string">&#x27;__&#x27;</span>, <span class="hljs-string">&#x27;\n&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(file2)<br><br><br><br><br>    def code_append_ai(key):<br>        <span class="hljs-attribute">x</span>=1<br>        <span class="hljs-keyword">while</span> x&gt;0:<br>            <span class="hljs-attribute">netname1</span>=str(input(&#x27;请输入域名/软件描述:&#x27;))<br>            <span class="hljs-attribute">username1</span>=str(input(&#x27;请输入账号名:&#x27;))<br>            <span class="hljs-attribute">password0</span>=random.sample(&#x27;&#x27;&#x27;qwertyuiop/asdfghjklzxcvbnm/1234567890-=!@#$12)<br>            #<span class="hljs-built_in">print</span>(password0)<br>            #列表转字符串<br>            <span class="hljs-attribute">password1</span>=<span class="hljs-string">&#x27;&#x27;</span><br>            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> password0:<br>                <span class="hljs-attribute">password1</span>=password1+str(i)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;请牢记您的密码&#x27;</span>+password1)<br>            time.sleep(3)<br>            <span class="hljs-attribute">x</span>=x-1<br><br><br>​        <br>​        <br>        #对密码进行加密<br>        <span class="hljs-attribute">password2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>        <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (password1+<span class="hljs-string">&#x27;\n&#x27;</span>):<br>            <span class="hljs-attribute">a</span>=ord(s)<br>            <span class="hljs-attribute">b</span>=a+key<br>            <span class="hljs-attribute">password2</span>=password2+chr(b)<br><br><br>        #对描述进行加密<br>        <span class="hljs-attribute">netname2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>        <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (netname1+<span class="hljs-string">&#x27;_&#x27;</span>):<br>            <span class="hljs-attribute">a</span>=ord(s)<br>            <span class="hljs-attribute">b</span>=a+key<br>            <span class="hljs-attribute">netname2</span>=netname2+chr(b)<br><br><br>        #对用户名进行加密<br>        <span class="hljs-attribute">username2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>        <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (username1+<span class="hljs-string">&#x27;_&#x27;</span>):<br>            <span class="hljs-attribute">a</span>=ord(s)<br>            <span class="hljs-attribute">b</span>=a+key<br>            <span class="hljs-attribute">username2</span>=username2+chr(b)<br><br><br><br>        #存储到文件里<br>        data = open(<span class="hljs-string">&#x27;Net_Code/data.txt&#x27;</span>,<span class="hljs-string">&#x27;a&#x27;</span>)<br>        data.write(str(netname2))<br>        data.write(str(username2))<br>        data.write(str(password2))<br>        data.write(<span class="hljs-string">&#x27;\n&#x27;</span>) #此处是为了换行，其实应该有更好的方法，这里就是单纯为了简单<br><br><br>​        <br>​            <br>    def show(x):<br>        <span class="hljs-keyword">while</span> int(x) !=0:<br>            <span class="hljs-built_in">print</span>(hello)<br>            <span class="hljs-attribute">x</span>=int(x-1)<br></code></pre></td></tr></table></figure>
+<h1 id="3-0版本（目前最新版本）"><a href="#3-0版本（目前最新版本）" class="headerlink" title="3.0版本（目前最新版本）"></a><strong>3.0版本（目前最新版本）</strong></h1><p>增加了GUI图形化界面，但是个人觉得做的不是很完全，部分功能还是需要命令行</p>
+<p>本人gui用的很少，所以会有很多奇奇怪怪的注释，望见谅！</p>
+<p>先放出源码，可以先看看，针对 win和macos系统 可执行文件 的打包和部署教程 正在制作中，稍安勿躁</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-keyword">from</span> cProfile import label<br><span class="hljs-keyword">from</span> ctypes import c_int<br><span class="hljs-keyword">from</span> dataclasses import dataclass<br><span class="hljs-keyword">from</span> email import message<br><span class="hljs-keyword">from</span> email.mime import image<br><span class="hljs-keyword">from</span> re import T<br>import tkinter as tk<br>import random<br>import time<br>import tkinter.messagebox<br><br><br><br><span class="hljs-attribute">data_point</span>=<span class="hljs-string">&#x27;psw_data.txt&#x27;</span>#根目录位置<br><br>def show():<br>    <span class="hljs-attribute">key</span>=int(entry_usr_pwd.get())<br>    data = open(data_point,<span class="hljs-string">&#x27;r&#x27;</span>)<br>    <span class="hljs-attribute">file</span>=str(data.read())<br>    <span class="hljs-attribute">file2</span>=<span class="hljs-string">&#x27;&#x27;</span><br><br>    <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> file:<br>        <span class="hljs-attribute">n</span>=ord(y)-key<br>        <span class="hljs-attribute">n</span>=chr(n)<br>        <span class="hljs-attribute">file2</span>=file2+n<br>    <br>    file2.replace(<span class="hljs-string">&#x27;__&#x27;</span>, <span class="hljs-string">&#x27;\n&#x27;</span>)<br>    window_show_output.insert(<span class="hljs-string">&#x27;insert&#x27;</span>,file2)<br><br><span class="hljs-comment">#def clean():</span><br>    #window_show_output.delete(<span class="hljs-string">&#x27;1.0&#x27;</span>,<span class="hljs-string">&#x27;end&#x27;</span>)<br><br>def code_append():<br>    window_show_output.delete(<span class="hljs-string">&#x27;1.0&#x27;</span>,<span class="hljs-string">&#x27;end&#x27;</span>)<br>    <span class="hljs-attribute">key</span>=int(entry_usr_pwd.get())<br>    <span class="hljs-attribute">a</span>=1<br>    <span class="hljs-keyword">while</span> a &gt;0:<br>        <span class="hljs-attribute">netname1</span>=str(input(&#x27;请输入域名/软件描述:&#x27;))<br>        <span class="hljs-attribute">username1</span>=str(input(&#x27;请输入账号名:&#x27;))<br>        <span class="hljs-attribute">password1</span>=input(&#x27;请输入密码:&#x27;)<br>        <span class="hljs-attribute">a</span>=a-1<br>    <br>    #对密码进行加密<br>    <span class="hljs-attribute">password2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (password1+<span class="hljs-string">&#x27;\n&#x27;</span>):<br>        <span class="hljs-attribute">a</span>=ord(s)<br>        <span class="hljs-attribute">b</span>=a+key<br>        <span class="hljs-attribute">password2</span>=password2+chr(b)<br><br><br>    #对描述进行加密<br>    <span class="hljs-attribute">netname2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (netname1+<span class="hljs-string">&#x27;_&#x27;</span>):<br>        <span class="hljs-attribute">a</span>=ord(s)<br>        <span class="hljs-attribute">b</span>=a+key<br>        <span class="hljs-attribute">netname2</span>=netname2+chr(b)<br><br><br>    #对用户名进行加密<br>    <span class="hljs-attribute">username2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (username1+<span class="hljs-string">&#x27;_&#x27;</span>):<br>        <span class="hljs-attribute">a</span>=ord(s)<br>        <span class="hljs-attribute">b</span>=a+key<br>        <span class="hljs-attribute">username2</span>=username2+chr(b)<br><br><br><br>    #存储到文件里<br>    data = open(data_point,<span class="hljs-string">&#x27;a&#x27;</span>)<br>    data.write(str(netname2))<br>    data.write(str(username2))<br>    data.write(str(password2))<br>    data.write(<span class="hljs-string">&#x27;\n&#x27;</span>) #此处是为了换行，其实应该有更好的方法，这里就是单纯为了简单<br><br>def code_append_ai():<br>    window_show_output.delete(<span class="hljs-string">&#x27;1.0&#x27;</span>,<span class="hljs-string">&#x27;end&#x27;</span>)<br>    <span class="hljs-attribute">key</span>=int(entry_usr_pwd.get())<br>    <span class="hljs-attribute">x</span>=1<br>    <span class="hljs-keyword">while</span> x&gt;0:<br>        <span class="hljs-attribute">netname1</span>=str(input(&#x27;请输入域名/软件描述:&#x27;))<br>        <span class="hljs-attribute">username1</span>=str(input(&#x27;请输入账号名:&#x27;))<br>        <span class="hljs-attribute">password0</span>=random.sample(&#x27;&#x27;&#x27;AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890@#¥%&#x27;&#x27;&#x27;,12) #此处还有问题，下个版本应当支持自定义<br>        #列表转字符串<br>        <span class="hljs-attribute">password1</span>=<span class="hljs-string">&#x27;&#x27;</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> password0:<br>            <span class="hljs-attribute">password1</span>=password1+str(i)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;请牢记您的密码&#x27;</span>+password1)<br>        time.sleep(3)<br>        <span class="hljs-attribute">x</span>=x-1<br><br>    #对密码进行加密<br>    <span class="hljs-attribute">password2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (password1+<span class="hljs-string">&#x27;\n&#x27;</span>):<br>        <span class="hljs-attribute">a</span>=ord(s)<br>        <span class="hljs-attribute">b</span>=a+key<br>        <span class="hljs-attribute">password2</span>=password2+chr(b)<br><br><br>    #对描述进行加密<br>    <span class="hljs-attribute">netname2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (netname1+<span class="hljs-string">&#x27;_&#x27;</span>):<br>        <span class="hljs-attribute">a</span>=ord(s)<br>        <span class="hljs-attribute">b</span>=a+key<br>        <span class="hljs-attribute">netname2</span>=netname2+chr(b)<br><br><br>    #对用户名进行加密<br>    <span class="hljs-attribute">username2</span>=<span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> (username1+<span class="hljs-string">&#x27;_&#x27;</span>):<br>        <span class="hljs-attribute">a</span>=ord(s)<br>        <span class="hljs-attribute">b</span>=a+key<br>        <span class="hljs-attribute">username2</span>=username2+chr(b)<br><br><br><br>    #存储到文件里<br>    data = open(data_point,<span class="hljs-string">&#x27;a&#x27;</span>)<br>    data.write(str(netname2))<br>    data.write(str(username2))<br>    data.write(str(password2))<br>    data.write(<span class="hljs-string">&#x27;\n&#x27;</span>) #此处是为了换行，其实应该有更好的方法，这里就是单纯为了简单<br><br>def readme():<br>    window_show_output.delete(<span class="hljs-string">&#x27;1.0&#x27;</span>,<span class="hljs-string">&#x27;end&#x27;</span>)<br>    <span class="hljs-attribute">text</span>=<span class="hljs-string">&#x27;&#x27;</span><span class="hljs-string">&#x27;</span><br><span class="hljs-string">以下是帮助手册</span><br><span class="hljs-string">GitHub链接：https://github.com/MRX-J0BS/Net_Code&#x27;</span><br>--如何确定主密钥--<br>在您第一次登录时，请在左侧的 ‘password’输入栏输入一个主密钥（这就是换位加密的关键值）<br>并且请您牢记此密码，一旦丢失那么您的所有密码将会无法复原（很难）<br>注：user name模块现在还没有正式调试完成，不用管<br><br>--关于安全性--<br>如果想要确定您密码的安全，您需要保证以下几点：<br>1.不要泄漏psw_data.txt 文件内存储了加密后的密码，虽然他们理论上是安全的，但不要太自信<br>2.请保证您运行的是，且仅是我自己编写的版本，未经确认的修改版很可能带来风险<br>3.最大的漏洞是（而且一直是）用户;没有绝对安全的系统，所以请为策略失效做好应急的准备<br>    window_show_output.insert(<span class="hljs-string">&#x27;insert&#x27;</span>,text)<br><br><span class="hljs-comment">#############################################################################</span><br>window = tk.Tk()<br>window.title(<span class="hljs-string">&#x27;密码管理器GUI版&#x27;</span>)<br>window.geometry(<span class="hljs-string">&#x27;686x471&#x27;</span>)<br><br><span class="hljs-comment">#canvas=tk.Canvas(window,height=580,width=580)</span><br><span class="hljs-comment">#main_image=tk.PhotoImage(file=&#x27;??????????&#x27;)</span><br><span class="hljs-comment">#main_image=canvas.create_image(0,0,anchor=&#x27;nw&#x27;,image=main_image)</span><br><span class="hljs-comment">#canvas.pack(side=&#x27;top&#x27;)</span><br><br>tk.messagebox.showerror(<span class="hljs-attribute">title</span>=<span class="hljs-string">&#x27;Hi&#x27;</span>, <span class="hljs-attribute">message</span>=<span class="hljs-string">&#x27;欢迎使用密码本 请仔细阅读使用说明&#x27;</span>) #欢迎<br><br><span class="hljs-comment">#设置一个名牌</span><br><span class="hljs-attribute">logo</span>=tk.Label(window,text=&#x27;由MRX制作，GitHub链接：https://github.com/MRX-J0BS/Net_Code&#x27;)<br>logo.pack(<span class="hljs-attribute">side</span>=tk.BOTTOM)<br><br>tk.Label(window, <span class="hljs-attribute">text</span>=<span class="hljs-string">&#x27;User name: &#x27;</span>).place(x=20, y= 30)<br>tk.Label(window, <span class="hljs-attribute">text</span>=<span class="hljs-string">&#x27;Password: &#x27;</span>).place(x=20, y= 60)<br><br>var_usr_name = tk.StringVar()<br>var_usr_name.<span class="hljs-built_in">set</span>(<span class="hljs-string">&#x27;&#x27;</span>)<br>entry_usr_name = tk.Entry(window, <span class="hljs-attribute">textvariable</span>=var_usr_name)<br>entry_usr_name.place(<span class="hljs-attribute">x</span>=140, <span class="hljs-attribute">y</span>=30)<br><span class="hljs-comment">#entry_usr_name.pack()</span><br><br>var_usr_pwd = tk.StringVar()<br>var_usr_pwd.<span class="hljs-built_in">set</span>(<span class="hljs-string">&#x27;&#x27;</span>)<br>entry_usr_pwd = tk.Entry(window, <span class="hljs-attribute">textvariable</span>=var_usr_pwd, <span class="hljs-attribute">show</span>=<span class="hljs-string">&#x27;*&#x27;</span>)<br>entry_usr_pwd.place(<span class="hljs-attribute">x</span>=140, <span class="hljs-attribute">y</span>=60)<br><span class="hljs-comment">#entry_usr_pwd.pack()</span><br><br><span class="hljs-comment">#var_usr_data = tk.StringVar()</span><br><span class="hljs-comment">#var_usr_data.set(&#x27;&#x27;)</span><br><br><br><br><span class="hljs-comment">#密钥输入界面</span><br><span class="hljs-comment">#window_input_key=tk.Entry(window,show=&#x27;*&#x27;,text=&#x27;密钥&#x27;)</span><br><span class="hljs-comment">#window_input_key.pack()</span><br><br><br><span class="hljs-comment">#总输出窗口</span><br><span class="hljs-attribute">window_show_output</span>=tk.Text(window,width=90)<br>window_show_output.place(<span class="hljs-attribute">x</span>=20,y=100)<br><br><span class="hljs-comment">#读取所有密码的按钮</span><br><span class="hljs-attribute">b</span>=tk.Button(window,text=&#x27;读取所有密码&#x27;,command=show)<br>b.place(<span class="hljs-attribute">x</span>=400,y=30)<br><br><br><span class="hljs-comment">#输入新密码的窗口</span><br><span class="hljs-attribute">d</span>=tk.Button(window,text=&#x27;点我加入新密码&#x27;,command=code_append)<br>d.place(<span class="hljs-attribute">x</span>=550,y=30)<br><br><span class="hljs-attribute">e</span>=tk.Button(window,text=&#x27;生成高强度密码&#x27;,command=code_append_ai)<br>e.place(<span class="hljs-attribute">x</span>=400,y=60)<br><br><span class="hljs-comment">#清空输出窗口的按钮</span><br><span class="hljs-comment">#c=tk.Button(window,text=&#x27;清空&#x27;,command=clean)</span><br><span class="hljs-comment">#c.pack()</span><br><br><span class="hljs-attribute">f</span>=tk.Button(window,text=&#x27;使用手册&#x27;,command=readme)<br>f.place(<span class="hljs-attribute">x</span>=550,y=60)<br><br>window.mainloop()<br></code></pre></td></tr></table></figure>
+<p>好了，就搞到这吧，继续加油</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/" class="print-no-link">#开发日记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>记一次凯撒加密程序的开发</div>
+      <div>https://blog.r0ngeblog.top/2022/12/30/记一次凯撒加密程序的开发/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>r0nge</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>December 30, 2022</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/01/valine%E8%AF%84%E8%AE%BA%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/" title="解决hexo-butterfly valine评论异常问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">解决hexo-butterfly valine评论异常问题</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/24/%E6%B0%B4%E6%B5%92%E4%BC%A0%E7%AB%A0%E8%8A%82%E5%A4%A7%E6%84%8F/" title="水浒传章节大意">
+                        <span class="hidden-mobile">水浒传章节大意</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'en'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/en.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
